@@ -19,6 +19,10 @@ pygame.display.set_caption("My Pygame")
 
 class game():
     def __init__(self):
+
+
+        
+
         # bg menu
         self.bg_menu_image
 
@@ -46,7 +50,8 @@ class game():
         self.username
 
         
-
+        # time
+        self.time = 3000 # ms 
 
 
         # high score
