@@ -3,6 +3,18 @@ import random
 import sys
 import time
 
+# variables
+
+
+
+
+
+
+
+
+
+
+
 # Initialize Pygame
 pygame.init()
 
@@ -17,6 +29,7 @@ TIME_LIMIT = 50  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
+BLACK = (0,0,0)
 
 # Create the game window
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -26,46 +39,76 @@ pygame.display.set_caption("OceanGuaridan")
 font = pygame.font.Font(None, 36)
 fact_font = pygame.font.Font(None, 15)
 
+
+# created the player class only its pos
 class Player:
     def __init__(self, x, y):
         self.x = x
         self.y = y
         self.velocity = pygame.Vector2(0, 0)
 
+    
+    # updates and intializes the player attributes
     def update(self):
         self.x += self.velocity.x
         self.y += self.velocity.y
         self.x = max(0, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
         self.y = max(0, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
 
+    
+    
+    # draws the player
     def draw(self):
         pygame.draw.rect(screen, RED, (self.x, self.y, PLAYER_SIZE, PLAYER_SIZE))
 
+
+
+# enemy class
 class Enemy:
+    
+    
+    # enemy attributes
     def __init__(self, x, y, direction):
         self.rect = pygame.Rect(x, y, ENEMY_SIZE, ENEMY_SIZE)
         self.direction = direction
-
+    
+    
+    # decision where the enemy goes or the rubbish
     def move(self):
         if self.direction == 'left':
             self.rect.x += ENEMY_SPEED
         else:
             self.rect.x -= ENEMY_SPEED
 
+
+
+    # binder
 class Game:
     def __init__(self):
+        
+        # created a player instance and initialized all the sizes and pos
         self.player = Player(SCREEN_WIDTH // 2 - PLAYER_SIZE // 2, SCREEN_HEIGHT // 2 - PLAYER_SIZE // 2)
         self.enemies = []
         self.enemy_spawn_timer = 0
         self.score = 0
         self.start_time = pygame.time.get_ticks()  # Start time in milliseconds
+        
+        
+        # initialize the starting page
         self.state = "home"
         self.message_timer = 0  # Timer for win/lose message display
+        
+        self.new_user = True
+        
 # Add variables to track movement keys
         self.is_w_pressed = False
         self.is_a_pressed = False
         self.is_s_pressed = False
         self.is_d_pressed = False
+        
+        
+        
+        
 # List of plastic pollution facts
         self.plastic_facts = [
             "Plastic pollution harms marine life and ecosystems worldwide.",
@@ -83,15 +126,28 @@ class Game:
         ]
 
         self.displayed_fact = None  # Initialize the displayed_fact attribute
-
+        
+        
+        
+        
+        # event runner
+        
+        
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                
+                
+                # detects for button click
                 if self.state == "home" and self.play_button.collidepoint(pygame.mouse.get_pos()):
-                    self.state = "game"
+                    self.state = "intro"
+                    
+                    
+                
+                    
                 elif self.state == "game":
                     mouse_x, mouse_y = pygame.mouse.get_pos()
                     for enemy in self.enemies:
@@ -99,7 +155,19 @@ class Game:
                             target_vector = pygame.Vector2(enemy.rect.centerx - self.player.x, enemy.rect.centery - self.player.y)
                             target_vector.normalize_ip()
                             self.player.velocity = target_vector * PLAYER_ACCELERATION
-# Detect key presses and releases for movement keys
+                            
+                else:
+                    # change the state to game as default
+                    self.state == "game"
+                    
+                            
+            # Detect key presses and releases for movement keys
+            
+            
+            
+            
+            
+            
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     self.is_w_pressed = True
@@ -109,6 +177,10 @@ class Game:
                     self.is_s_pressed = True
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = True
+            
+            
+            
+            # this returns when it is not clicked to the defaults.
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_w:
                     self.is_w_pressed = False
@@ -118,10 +190,16 @@ class Game:
                     self.is_s_pressed = False
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = False
-
+                    
+                    
+                    
+                    
+                    
+                    
     def update(self):
         if self.state == "game":
- # Adjust the player's velocity based on key presses
+            print(self.new_user)
+            # Adjust the player's velocity based on key presses
             player_velocity = pygame.Vector2(0, 0)
             if self.is_w_pressed:
                 player_velocity.y -= PLAYER_ACCELERATION
@@ -137,15 +215,18 @@ class Game:
             self.player.update()
             current_time = pygame.time.get_ticks()
             time_elapsed = (current_time - self.start_time) / 1000  # Convert to seconds
-
+            
+        
             if time_elapsed >= TIME_LIMIT or self.score >= 20:
                 if self.score >= 20:
                     self.state = "win"
+                    self.new_user = False
                 else:
                     self.state = "lose"
                 self.player = Player(SCREEN_WIDTH // 2 - PLAYER_SIZE // 2, SCREEN_HEIGHT // 2 - PLAYER_SIZE // 2)
                 self.enemies.clear()
                 self.message_timer = pygame.time.get_ticks()
+                self.new_user = False
 
             self.enemy_spawn_timer += 1
             if self.enemy_spawn_timer >= 60:
@@ -172,11 +253,35 @@ class Game:
     def draw(self):
         screen.fill(WHITE)
 
+        
+        
+        # home
         if self.state == "home":
             self.play_button = pygame.Rect(SCREEN_WIDTH // 2 - 75, SCREEN_HEIGHT // 2 - 25, 150, 50)
             pygame.draw.rect(screen, RED, self.play_button)
             play_text = font.render("Play", True, WHITE)
             screen.blit(play_text, (self.play_button.centerx - 30, self.play_button.centery - 15))
+            
+            
+            # draws the intro screen
+        elif self.state == "intro" and self.new_user == True:
+                screen.fill(BLACK)
+                
+                
+                
+                credits = font.render("Created with ❤️ by Manling, Chein and Frankie", True, WHITE)
+                screen.blit(credits, ((SCREEN_WIDTH // 2) - 270, SCREEN_HEIGHT // 2))
+                
+                
+                pygame.display.flip()
+                time.sleep(2)
+                self.state = "game"
+        
+            
+
+            
+            
+            
         elif self.state == "game":
             self.player.draw()
             for enemy in self.enemies:
@@ -207,6 +312,8 @@ class Game:
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+        else:
+            self.state = "game"
 
         pygame.display.flip()
 
@@ -224,3 +331,15 @@ while True:
     game.update()
     game.draw()
     pygame.time.Clock().tick(60)
+    
+    
+    
+    
+    
+    """
+    The draw is where all the display happens and the screen
+    while the updates, updates all the variables, and attributes
+    
+    
+    
+    """
