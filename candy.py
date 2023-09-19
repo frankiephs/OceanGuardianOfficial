@@ -279,13 +279,35 @@ class Game:
                 screen.fill(BLACK)
                 
                 
+                # Top
+                obj = font.render("The objective of the game is to collect rubbish in", True, WHITE)
+                obj2 = font.render("a specified time, You need to get 15 rubbish to win.", True, WHITE)
+                obj3 = font.render("if you lose, the game ends.", True, WHITE)
+                Instructions = font.render("Controls: Use the WASD.", True, WHITE)
                 
-                credits = font.render("Created with ❤️ by Manling, Chein and Frankie", True, WHITE)
-                screen.blit(credits, ((SCREEN_WIDTH // 2) - 270, SCREEN_HEIGHT // 2))
+                # Credits
+                credits = font.render("Credits:", True, WHITE)
+                credits1 = font.render("Frankie: Project manager and Main Programmer", True, WHITE)
+                credits2 = font.render("Chien: Debugger and programmer", True, WHITE)
+                credits3 = font.render("Manling: Main designer", True, WHITE)
                 
+                
+                # blit
+                # Objective
+                screen.blit(obj, ((WINDOW_SCREEN_WIDTH // 2) - 250, 200))
+                screen.blit(obj2, ((WINDOW_SCREEN_WIDTH // 2) - 250, 230))
+                screen.blit(obj3, ((WINDOW_SCREEN_WIDTH // 2) - 250, 260))
+                
+                screen.blit(Instructions, ((WINDOW_SCREEN_WIDTH // 2) - 100, 320))
+                
+                # credits
+                screen.blit(credits, (10, WINDOW_SCREEN_WIDTH - 620))
+                screen.blit(credits1, (10, WINDOW_SCREEN_WIDTH - 590))
+                screen.blit(credits2, (10, WINDOW_SCREEN_WIDTH - 560))
+                screen.blit(credits3, (10, WINDOW_SCREEN_WIDTH - 530))
                 
                 pygame.display.flip()
-                time.sleep(2)
+                time.sleep(5)
                 self.state = "game"
         
             
