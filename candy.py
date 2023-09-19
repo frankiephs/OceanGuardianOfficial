@@ -8,31 +8,41 @@ import time
 
 
 
-
-
-
-
-
-
-
 # Initialize Pygame
 pygame.init()
 
 # Constants
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 650
+
+# Where the player moves around
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 830
+
+# starting from the very top
+TOP_SCREEN = 300
+
+
+# The screen size
+WINDOW_SCREEN_WIDTH = 1280
+WINDOW_SCREEN_HEIGHT = 830
+
+# Required score
+SCORE = 15
+
+
+
 PLAYER_SIZE = 50
 ENEMY_SIZE = 30
-ENEMY_SPEED = 3
-PLAYER_ACCELERATION = 5
-TIME_LIMIT = 50  # Time limit in seconds
+ENEMY_SPEED = 20
+PLAYER_ACCELERATION = 30
+TIME_LIMIT = 60  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLACK = (0,0,0)
+GREEN = (0,255,0)
 
 # Create the game window
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+screen = pygame.display.set_mode((WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
 pygame.display.set_caption("OceanGuaridan")
 
 # Load font
@@ -52,8 +62,9 @@ class Player:
     def update(self):
         self.x += self.velocity.x
         self.y += self.velocity.y
-        self.x = max(0, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
-        self.y = max(0, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
+        self.x = max(TOP_SCREEN, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
+        self.y = max(TOP_SCREEN, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
+        
 
     
     
@@ -191,11 +202,6 @@ class Game:
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = False
                     
-                    
-                    
-                    
-                    
-                    
     def update(self):
         if self.state == "game":
             print(self.new_user)
@@ -217,8 +223,8 @@ class Game:
             time_elapsed = (current_time - self.start_time) / 1000  # Convert to seconds
             
         
-            if time_elapsed >= TIME_LIMIT or self.score >= 20:
-                if self.score >= 20:
+            if time_elapsed >= TIME_LIMIT or self.score >= SCORE:
+                if self.score >= SCORE:
                     self.state = "win"
                     self.new_user = False
                 else:
@@ -233,10 +239,10 @@ class Game:
                 side = random.choice(['left', 'right'])
                 if side == 'left':
                     enemy_x = 0 - ENEMY_SIZE
-                    enemy_y = random.randint(0, SCREEN_HEIGHT - ENEMY_SIZE)
+                    enemy_y = random.randint(TOP_SCREEN, SCREEN_HEIGHT - ENEMY_SIZE)
                 else:
                     enemy_x = SCREEN_WIDTH
-                    enemy_y = random.randint(0, SCREEN_HEIGHT - ENEMY_SIZE)
+                    enemy_y = random.randint(TOP_SCREEN, SCREEN_HEIGHT - ENEMY_SIZE)
                 new_enemy = Enemy(enemy_x, enemy_y, side)
                 self.enemies.append(new_enemy)
                 self.enemy_spawn_timer = 0
@@ -251,8 +257,13 @@ class Game:
                     self.player.velocity = pygame.Vector2(0, 0)
 
     def draw(self):
-        screen.fill(WHITE)
-
+        
+        
+        bg_img = pygame.image.load("bg.png")
+        bg = pygame.transform.scale(bg_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+        # The all screen fill
+        screen.blit(bg, (0,0))
+        
         
         
         # home
@@ -339,7 +350,4 @@ while True:
     """
     The draw is where all the display happens and the screen
     while the updates, updates all the variables, and attributes
-    
-    
-    
     """
