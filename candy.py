@@ -62,7 +62,7 @@ class Player:
     def update(self):
         self.x += self.velocity.x
         self.y += self.velocity.y
-        self.x = max(TOP_SCREEN, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
+        self.x = max(0, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
         self.y = max(TOP_SCREEN, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
         
 
