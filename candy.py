@@ -70,7 +70,9 @@ class Player:
     
     # draws the player
     def draw(self):
-        pygame.draw.rect(screen, RED, (self.x, self.y, PLAYER_SIZE, PLAYER_SIZE))
+        player = pygame.image.load("fish.png")
+        player = pygame.transform.scale(player, (PLAYER_SIZE, PLAYER_SIZE))
+        screen.blit(player, (self.x, self.y))
 
 
 
@@ -81,6 +83,7 @@ class Enemy:
     # enemy attributes
     def __init__(self, x, y, direction):
         self.rect = pygame.Rect(x, y, ENEMY_SIZE, ENEMY_SIZE)
+        
         self.direction = direction
     
     
