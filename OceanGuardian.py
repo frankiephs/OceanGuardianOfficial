@@ -6,7 +6,7 @@ import time
 # variables
 
 
-print("Hell0")
+#print("Hell0")
 
 # Initialize Pygame
 pygame.init()
