@@ -4,10 +4,9 @@ import sys
 import time
 
 # variables
-
+ENEMY_SIZE = 45
 enemyimg = pygame.image.load("bottle.png")
-
-#print("Hell0")
+enemyimg = pygame.transform.scale(enemyimg, (ENEMY_SIZE, ENEMY_SIZE))
 
 # Initialize Pygame
 pygame.init()
@@ -27,15 +26,14 @@ WINDOW_SCREEN_WIDTH = 1280
 WINDOW_SCREEN_HEIGHT = 830
 
 # Required score
-SCORE = 15
+SCORE = 20
 
 
 
-PLAYER_SIZE = 60
-ENEMY_SIZE = 30
-ENEMY_SPEED = 20
-PLAYER_ACCELERATION = 30
-TIME_LIMIT = 60  # Time limit in seconds
+PLAYER_SIZE = 55
+ENEMY_SPEED = 18
+PLAYER_ACCELERATION = 20
+TIME_LIMIT = 35  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -239,7 +237,7 @@ class Game:
                 self.message_timer = pygame.time.get_ticks()
                 self.new_user = False
 
-            self.enemy_spawn_timer += 1
+            self.enemy_spawn_timer += 2
             if self.enemy_spawn_timer >= 60:
                 side = random.choice(['left', 'right'])
                 if side == 'left':
@@ -286,7 +284,7 @@ class Game:
                 
                 # Top
                 obj = font.render("The objective of the game is to collect rubbish in", True, WHITE)
-                obj2 = font.render("a specified time, You need to get 15 rubbish to win.", True, WHITE)
+                obj2 = font.render("a specified time, You need to get 20 rubbish to win.", True, WHITE)
                 obj3 = font.render("if you lose, the game ends.", True, WHITE)
                 Instructions = font.render("Controls: Use the WASD.", True, WHITE)
                 
@@ -312,7 +310,7 @@ class Game:
                 screen.blit(credits3, (10, WINDOW_SCREEN_WIDTH - 530))
                 
                 pygame.display.flip()
-                time.sleep(5)
+                time.sleep(3)
                 self.state = "game"
         
             
@@ -369,7 +367,7 @@ while True:
     game.handle_events()
     game.update()
     game.draw()
-    pygame.time.Clock().tick(100)
+    pygame.time.Clock().tick(1000)
     
     
     
