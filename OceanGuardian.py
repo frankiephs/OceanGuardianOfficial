@@ -72,20 +72,19 @@ class Player:
 
     
     # updates and intializes the player attributes
-    def update(self):
+    def update(self,right):
         self.x += self.velocity.x
         self.y += self.velocity.y
         self.x = max(0, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
         self.y = max(TOP_SCREEN, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
-        
-
+        self.playerimg = pygame.image.load("fish.png")
+        self.playerimg2 = pygame.transform.scale(self.playerimg, (PLAYER_SIZE, PLAYER_SIZE))
+        self.player = pygame.transform.flip(self.playerimg2, right, False)
     
     
     # draws the player
     def draw(self):
-        player = pygame.image.load("fish.png")
-        player = pygame.transform.scale(player, (PLAYER_SIZE, PLAYER_SIZE))
-        screen.blit(player, (self.x, self.y))
+        screen.blit(self.player, (self.x, self.y))
 
 
 
@@ -114,6 +113,7 @@ class Game:
     def __init__(self):
         
         # created a player instance and initialized all the sizes and pos
+        self.right = False
         self.player = Player(SCREEN_WIDTH // 2 - PLAYER_SIZE // 2, SCREEN_HEIGHT // 2 - PLAYER_SIZE // 2)
         self.enemies = []
         self.enemy_spawn_timer = 0
@@ -184,17 +184,24 @@ class Game:
             
             
             
-            
+                
             
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     self.is_w_pressed = True
                 elif event.key == pygame.K_a:
                     self.is_a_pressed = True
+                    self.right = False
+                    print(self.right)
+                    
                 elif event.key == pygame.K_s:
                     self.is_s_pressed = True
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = True
+                    self.right = True
+                    print(self.right)
+                    
+                    
             
             
             
@@ -204,10 +211,12 @@ class Game:
                     self.is_w_pressed = False
                 elif event.key == pygame.K_a:
                     self.is_a_pressed = False
+                    
                 elif event.key == pygame.K_s:
                     self.is_s_pressed = False
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = False
+                    
                     
     def update(self):
         if self.state == "game":
@@ -215,21 +224,27 @@ class Game:
                 # bg music
                 pygame.mixer.music.load("OceanGuardian_Game_now.mp3")
                 pygame.mixer.music.play()
-            print(self.new_user)
+            
             # Adjust the player's velocity based on key presses
             player_velocity = pygame.Vector2(0, 0)
             if self.is_w_pressed:
                 player_velocity.y -= PLAYER_ACCELERATION
             if self.is_a_pressed:
                 player_velocity.x -= PLAYER_ACCELERATION
+                self.right = False
+                
+                
             if self.is_s_pressed:
                 player_velocity.y += PLAYER_ACCELERATION
             if self.is_d_pressed:
                 player_velocity.x += PLAYER_ACCELERATION
+                self.right = True
+                
+                
             
             self.player.velocity = player_velocity
             
-            self.player.update()
+            self.player.update(self.right)
             current_time = pygame.time.get_ticks()
             time_elapsed = (current_time - self.start_time) / 1000  # Convert to seconds
             
