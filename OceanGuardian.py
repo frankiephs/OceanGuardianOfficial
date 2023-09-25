@@ -3,11 +3,19 @@ import random
 import sys
 import time
 
-# variables
-
 
 # Initialize Pygame
 pygame.init()
+
+# sound
+
+collision_sound = pygame.mixer.Sound("comiendose-el-control-1-81452.mp3")
+button_click = pygame.mixer.Sound("shooting-sound-fx-159024.mp3")
+win_sound = pygame.mixer.Sound("success-fanfare-trumpets-6185.mp3")
+lose_sound = pygame.mixer.Sound("wah-wah-sad-trombone-6347.mp3")
+
+
+
 
 # Constants
 
@@ -157,19 +165,9 @@ class Game:
                 
                 # detects for button click
                 if self.state == "home" and self.play_button.collidepoint(pygame.mouse.get_pos()):
+                    button_click.play()
                     self.state = "intro"
-                    
-                    
                 
-                    
-                elif self.state == "game":
-                    mouse_x, mouse_y = pygame.mouse.get_pos()
-                    for enemy in self.enemies:
-                        if enemy.rect.collidepoint(mouse_x, mouse_y):
-                            target_vector = pygame.Vector2(enemy.rect.centerx - self.player.x, enemy.rect.centery - self.player.y)
-                            target_vector.normalize_ip()
-                            self.player.velocity = target_vector * PLAYER_ACCELERATION
-                            
                 else:
                     # change the state to game as default
                     self.state == "game"
@@ -228,9 +226,11 @@ class Game:
         
             if time_elapsed >= TIME_LIMIT or self.score >= SCORE:
                 if self.score >= SCORE:
+                    win_sound.play()
                     self.state = "win"
                     self.new_user = False
                 else:
+                    lose_sound.play()
                     self.state = "lose"
                 self.player = Player(SCREEN_WIDTH // 2 - PLAYER_SIZE // 2, SCREEN_HEIGHT // 2 - PLAYER_SIZE // 2)
                 self.enemies.clear()
@@ -256,6 +256,7 @@ class Game:
             for enemy in self.enemies:
                 if enemy.rect.colliderect(pygame.Rect(self.player.x, self.player.y, PLAYER_SIZE, PLAYER_SIZE)):
                     self.enemies.remove(enemy)
+                    collision_sound.play()
                     self.score += 1
                     self.player.velocity = pygame.Vector2(0, 0)
 
@@ -334,6 +335,7 @@ class Game:
             time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, RED)
             screen.blit(time_text, (10, 50))
         elif self.state == "win":
+            
             win_text = font.render("Congratulations! You won!", True, RED)
             if self.displayed_fact is None:
                 self.displayed_fact = random.choice(self.plastic_facts)
