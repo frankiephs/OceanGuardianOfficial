@@ -321,7 +321,6 @@ class Game:
         elif self.state == "game":
             self.player.draw()
             for enemy in self.enemies:
-       
                 
                 enemyimg = pygame.image.load("bottle.png")
                 enemyimg = pygame.transform.scale(enemyimg,(ENEMY_SIZE,ENEMY_SIZE))
@@ -349,12 +348,36 @@ class Game:
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+        
+        
+        
+        
+        # player lose renderer
+        
         elif self.state == "lose":
+            
+            # Black screen
+            screen.fill(BLACK)
+            
+            
+            # lose text
             lose_text = font.render("Game over! Try again.", True, RED)
-            screen.blit(lose_text, (SCREEN_WIDTH // 2 - 125, SCREEN_HEIGHT // 2 - 20))
+            screen.blit(lose_text, (SCREEN_WIDTH // 2 - 125, SCREEN_HEIGHT // 2 - 300))
+            
+            # setting up end image
+            img = pygame.image.load("lose1.png")
+            img = pygame.transform.scale(img, (img.get_width() // 2, img.get_height() // 2))
+            screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) - 350, (WINDOW_SCREEN_HEIGHT // 2) - 200))
+            
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+        
+        
+        
+        
+        
+        
         else:
             self.state = "game"
 
