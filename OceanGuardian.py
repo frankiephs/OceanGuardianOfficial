@@ -6,9 +6,6 @@ import time
 # variables
 
 
-
-#print("Hell0")
-
 # Initialize Pygame
 pygame.init()
 
@@ -34,7 +31,7 @@ SCORE = 15
 
 PLAYER_SIZE = 60
 
-ENEMY_SIZE = 30
+ENEMY_SIZE = 40
 ENEMY_SPEED = 20
 PLAYER_ACCELERATION = 30
 TIME_LIMIT = 60  # Time limit in seconds
