@@ -5,12 +5,9 @@ import time
 
 # variables
 
-<<<<<<< Updated upstream:candy.py
-=======
 
->>>>>>> Stashed changes:OceanGuardian.py
 
-print("Hell0")
+#print("Hell0")
 
 # Initialize Pygame
 pygame.init()
@@ -34,7 +31,7 @@ SCORE = 15
 
 
 
-PLAYER_SIZE = 50
+PLAYER_SIZE = 60
 ENEMY_SIZE = 30
 ENEMY_SPEED = 20
 PLAYER_ACCELERATION = 30
@@ -88,11 +85,8 @@ class Enemy:
     def __init__(self, x, y, direction):
         self.rect = pygame.Rect(x, y, ENEMY_SIZE, ENEMY_SIZE)
         
-<<<<<<< Updated upstream:candy.py
-=======
         
         
->>>>>>> Stashed changes:OceanGuardian.py
         self.direction = direction
     
     
@@ -330,9 +324,6 @@ class Game:
         elif self.state == "game":
             self.player.draw()
             for enemy in self.enemies:
-<<<<<<< Updated upstream:candy.py
-                pygame.draw.rect(screen, RED, enemy.rect)
-=======
                 
                 
                 enemyimg = pygame.image.load("bottle.png")
@@ -340,7 +331,6 @@ class Game:
                 
                 screen.blit(enemyimg,enemy.rect )
                 
->>>>>>> Stashed changes:OceanGuardian.py
 
             score_text = font.render("Score: {}".format(self.score), True, RED)
             screen.blit(score_text, (10, 10))
@@ -385,7 +375,7 @@ while True:
     game.handle_events()
     game.update()
     game.draw()
-    pygame.time.Clock().tick(60)
+    pygame.time.Clock().tick(100)
     
     
     
