@@ -13,6 +13,7 @@ collision_sound = pygame.mixer.Sound("comiendose-el-control-1-81452.mp3")
 button_click = pygame.mixer.Sound("shooting-sound-fx-159024.mp3")
 win_sound = pygame.mixer.Sound("success-fanfare-trumpets-6185.mp3")
 lose_sound = pygame.mixer.Sound("wah-wah-sad-trombone-6347.mp3")
+game_bg_music = pygame.mixer.music.load("OceanGuardian_Game_now.mp3")
 
 
 
@@ -205,6 +206,8 @@ class Game:
                     
     def update(self):
         if self.state == "game":
+            if pygame.mixer.music.get_busy() == False:
+                pygame.mixer.music.play()
             print(self.new_user)
             # Adjust the player's velocity based on key presses
             player_velocity = pygame.Vector2(0, 0)
@@ -335,6 +338,8 @@ class Game:
             time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, RED)
             screen.blit(time_text, (10, 50))
         elif self.state == "win":
+            if pygame.mixer.music.get_busy() == True:
+                pygame.mixer.music.fadeout(500)
             
             win_text = font.render("Congratulations! You won!", True, RED)
             if self.displayed_fact is None:
@@ -357,7 +362,8 @@ class Game:
         # player lose renderer
         
         elif self.state == "lose":
-            
+            if pygame.mixer.music.get_busy() == True:
+                pygame.mixer.music.fadeout(500)
             # Black screen
             screen.fill(BLACK)
             
