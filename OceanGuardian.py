@@ -6,6 +6,7 @@ import time
 # variables
 
 
+
 #print("Hell0")
 
 # Initialize Pygame
@@ -30,7 +31,9 @@ SCORE = 15
 
 
 
-PLAYER_SIZE = 50
+
+PLAYER_SIZE = 60
+
 ENEMY_SIZE = 30
 ENEMY_SPEED = 20
 PLAYER_ACCELERATION = 30
@@ -83,7 +86,7 @@ class Enemy:
     # enemy attributes
     def __init__(self, x, y, direction):
         self.rect = pygame.Rect(x, y, ENEMY_SIZE, ENEMY_SIZE)
-        
+
         self.direction = direction
     
     
@@ -321,7 +324,14 @@ class Game:
         elif self.state == "game":
             self.player.draw()
             for enemy in self.enemies:
-                pygame.draw.rect(screen, RED, enemy.rect)
+       
+                
+                enemyimg = pygame.image.load("bottle.png")
+                enemyimg = pygame.transform.scale(enemyimg,(ENEMY_SIZE,ENEMY_SIZE))
+                
+                screen.blit(enemyimg,enemy.rect )
+                
+
 
             score_text = font.render("Score: {}".format(self.score), True, RED)
             screen.blit(score_text, (10, 10))
@@ -366,7 +376,9 @@ while True:
     game.handle_events()
     game.update()
     game.draw()
-    pygame.time.Clock().tick(60)
+
+    pygame.time.Clock().tick(100)
+
     
     
     
@@ -375,4 +387,6 @@ while True:
     """
     The draw is where all the display happens and the screen
     while the updates, updates all the variables, and attributes
+
     """
+
