@@ -13,8 +13,12 @@ collision_sound = pygame.mixer.Sound("comiendose-el-control-1-81452.mp3")
 button_click = pygame.mixer.Sound("shooting-sound-fx-159024.mp3")
 win_sound = pygame.mixer.Sound("success-fanfare-trumpets-6185.mp3")
 lose_sound = pygame.mixer.Sound("wah-wah-sad-trombone-6347.mp3")
-game_bg_music = pygame.mixer.music.load("OceanGuardian_Game_now.mp3")
 
+# Ai speeches
+objective = pygame.mixer.Sound("The Objective.mp3")
+tomove = pygame.mixer.Sound("To move.mp3")
+doomed = pygame.mixer.Sound("We're doomed.mp3")
+horay = pygame.mixer.Sound("Horay.mp3")
 
 
 
@@ -33,7 +37,7 @@ WINDOW_SCREEN_WIDTH = 1280
 WINDOW_SCREEN_HEIGHT = 830
 
 # Required score
-SCORE = 15
+SCORE = 1
 
 
 
@@ -44,7 +48,7 @@ ENEMY_SIZE = 40
 ENEMY_SPEED = 20
 PLAYER_ACCELERATION = 30
 TIME_LIMIT = 60  # Time limit in seconds
-MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds)
+MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds) * 2
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLACK = (0,0,0)
@@ -129,7 +133,8 @@ class Game:
         self.is_s_pressed = False
         self.is_d_pressed = False
         
-        
+# sound
+        self.sound_played = False
         
         
 # List of plastic pollution facts
@@ -207,6 +212,8 @@ class Game:
     def update(self):
         if self.state == "game":
             if pygame.mixer.music.get_busy() == False:
+                # bg music
+                pygame.mixer.music.load("OceanGuardian_Game_now.mp3")
                 pygame.mixer.music.play()
             print(self.new_user)
             # Adjust the player's velocity based on key presses
@@ -314,6 +321,15 @@ class Game:
                 screen.blit(credits3, (10, WINDOW_SCREEN_WIDTH - 530))
                 
                 pygame.display.flip()
+                time.sleep(1)
+                
+                objective.play()
+                
+                time.sleep(10)
+                
+                
+                tomove.play()
+                
                 time.sleep(5)
                 self.state = "game"
         
@@ -341,20 +357,36 @@ class Game:
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
             
+            # bg
+            screen.fill(BLACK)
+            
             win_text = font.render("Congratulations! You won!", True, RED)
             if self.displayed_fact is None:
                 self.displayed_fact = random.choice(self.plastic_facts)
                 time.sleep(3.5)
-
-
+                
             
             fact_text = font.render(self.displayed_fact, True, RED)
 
             screen.blit(fact_text, (SCREEN_WIDTH // 2 - 450, SCREEN_HEIGHT // 2 + 20))
             screen.blit(win_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 20))
+            pygame.display.flip()
+            
+            
+            time.sleep(2)
+            if not self.sound_played:  
+                horay.play()
+                self.sound_played = True
+            
+            time.sleep(10)
+            
+            
+            
+            
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+                self.sound_played = False
         
         
         
@@ -377,9 +409,22 @@ class Game:
             img = pygame.transform.scale(img, (img.get_width() // 2, img.get_height() // 2))
             screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) - 350, (WINDOW_SCREEN_HEIGHT // 2) - 200))
             
+            pygame.display.flip()
+            
+            
+            time.sleep(4.5)
+            if not self.sound_played:  
+                doomed.play()
+                self.sound_played = True
+            
+            
+            
+            
+            
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+                self.sound_played = False
         
         
         
