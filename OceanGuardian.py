@@ -31,14 +31,16 @@ SCORE = 20
 
 
 PLAYER_SIZE = 55
-ENEMY_SPEED = 18
+ENEMY_SPEED = 17
 PLAYER_ACCELERATION = 20
 TIME_LIMIT = 35  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
+WHITE = (214, 234, 248) #Actually a very light blue
+RED = (210, 4, 45)
 BLACK = (0,0,0)
-GREEN = (0,255,0)
+GREEN = (80, 200, 120)
+BLUE = (0, 71, 171)
+
 
 # Create the game window
 screen = pygame.display.set_mode((WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
@@ -272,7 +274,7 @@ class Game:
         # home
         if self.state == "home":
             self.play_button = pygame.Rect(SCREEN_WIDTH // 2 - 75, SCREEN_HEIGHT // 2 - 25, 150, 50)
-            pygame.draw.rect(screen, RED, self.play_button)
+            pygame.draw.rect(screen, BLUE, self.play_button)
             play_text = font.render("Play", True, WHITE)
             screen.blit(play_text, (self.play_button.centerx - 30, self.play_button.centery - 15))
             
@@ -324,19 +326,19 @@ class Game:
                 screen.blit(enemyimg,enemy.rect )
                 
 
-            score_text = font.render("Score: {}".format(self.score), True, RED)
-            screen.blit(score_text, (10, 10))
-            time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, RED)
-            screen.blit(time_text, (10, 50))
+            score_text = font.render("Score: {}".format(self.score), True, WHITE)
+            screen.blit(score_text, (15, 760))
+            time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, WHITE)
+            screen.blit(time_text, (15, 790))
         elif self.state == "win":
-            win_text = font.render("Congratulations! You won!", True, RED)
+            win_text = font.render("Congratulations! You won!", True, GREEN)
             if self.displayed_fact is None:
                 self.displayed_fact = random.choice(self.plastic_facts)
                 time.sleep(3.5)
 
 
             
-            fact_text = font.render(self.displayed_fact, True, RED)
+            fact_text = font.render(self.displayed_fact, True, WHITE)
 
             screen.blit(fact_text, (SCREEN_WIDTH // 2 - 450, SCREEN_HEIGHT // 2 + 20))
             screen.blit(win_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 20))
