@@ -24,22 +24,91 @@ Use the **W A S D** Controls.
 
 
 ### Step 1: Clone this repository
-Method 1: Using the git clone in the *cmd* or *powershell*
-Method 2: Using the github Desktop
-Method 3: Downloading the zip file
+**Method 1:** Using the git clone in the *cmd* or *powershell*
+step 1: Navigate to the directory you want to put the repository using
 
-### Step 2:** Install the required libraries
-Method 1: Manual download
-Method 2: Using *cmd* or *powershell*
+    cd <directory>
+   for example,
+   
+
+    cd desktop/myfolder
+
+   
+
+step 2: Clone using git clone command
+
+    git clone https://github.com/frankiephs/OceanGuardianOfficial.git
+   *if you do not have git, refer to method 2*
+
+**Method 2:** Using the github Desktop
+step 1: watch [this 3 minutes youtube tutorial about cloning a git repository using github desktop.](https://www.youtube.com/watch?v=PoZNIbs_wx8)
+
+**Method 3:** Downloading the zip file
+step 1: Click the 'Code' button
+step 2: Click "Download ZIP"
+
+
+### Step 2: Install the required libraries
+**Method 1:** Manual download using *cmd* or *powershell*
+step 1: Install using pip the package/library individually
+
+    pip install <package name/library>
+   Package/library names are listed above in the *"required libraries list"*
+   for example,
+   
+
+    pip install pygame
+   continue...
+   
+
+**Method 2:** Download all requirements using *cmd* or *powershell*
+step 1: navigate to your directory using
+
+    cd <directory>
+   step 2: install requirements.txt
+   
+
+    pip install -r requirements.txt
 
 ### Step 3: Run the file
-Method 1: Using *cmd** or **powershell*
-Method 2: Manually executing it in your IDE
+**Method 1**: Using *cmd** or **powershell*
+step 1: use these commands
+
+    python OceanGuardian.py
+   or 
+   
+
+    python3 OceanGuardian.py
+or 
+
+    py OceanGuardian.py
+
+
+**Method 2:** Manually executing it in your IDE
+step 1: click the run button on your IDE
+if you are using in vscode, click the **run** button or the **triangle** button that represents run.
+
 
 ## Installation in replit
+**Step 1:** Click **create**
+**Step 2:** Click **Import from github**
+Step 3: Copy and paste the **github URL**
 
+    https://github.com/frankiephs/OceanGuardianOfficial.git
+Step 4: Select the *language* to **pygame**
+Step 5: Click **Import from github**
+Step 6: Click **run**
+if you are getting no display, make sure to toggle **output** on the **tools stab** below the **files tab**.
+ if it says `"no such file: main.py"`, change the file name of "OceanGuardian.py" to "main.py"
+or use the shell to run the file with 
+
+    python OceanGuardian.py
+Any issues? Please refer to 'Frequently asked Question'.
+ 
 ## Game Tips:
-Collect the rubbish as soon as it respawns because the rubbish respawns as soon as the previous rubbish disappears. 
+
+> **Collect the rubbish as soon as it respawns because the rubbish**
+> **respawns as soon as the previous rubbish disappears.**
 
 
 ## Frequently Asked Questions
@@ -74,11 +143,15 @@ Collect the rubbish as soon as it respawns because the rubbish respawns as soon 
 >In pygame, to exit the game, You will need to call the *'pygame.quit' and 'sys.exit'*, When in a delay method (refering to the previous question), the software stops or the file stops therefore it cannot call the quit method. "Then why on other areas are working?" Other areas use the tick difference to make a timer, this is quite complex and requires a longer code.  We are planning to remove the delay by proceeding with the "click to continue" system but that will consume another time.
 
 ### "It says pygame.mixer.init() error?"
-> regarding to the `pygame.mixer.init()` error, This is because replit is a browser based IDE and the `pygame.mixer.init()` finds an audio device which is typically refering to the hardware. To solve this issue, you will need to use the "pygame" language instead of the "python" language. In this case, it now supports sounds from pygame.
+> regarding to the `pygame.mixer.init()` error, This is because replit is a browser based IDE and the `pygame.mixer.init()` finds an audio device which is typically refering to the hardware. To solve this issue, you will need to **use the "pygame" language** instead of the "python" language. In this case, it now supports sounds from pygame.
 > 
 ### "Why is the performance slower in replit?"
-> Replit have its own GPU, RAM and storage because it is virtual environment that uses docker containers. These GPU, RAM, etc. have its own limitations and might require to upgrade your own account if you want a faster one. Pygame also runs fast frames therefore it requires a hardware that is fast too.
+> Replit have its own GPU, RAM and storage because it is virtual environment that uses docker containers. These GPU, RAM, etc. have its own limitations and might require to upgrade your own account if you want a faster one. Pygame also runs fast frames therefore it requires a hardware that is fast too. **I will recommend installing the game in your device, please read "Installation on windows".**
+### "Why are the sprite's appearance delayed in replit?"
+> Please refer to 'Why is the performance slower in replit'  question. The display method and the timer are not on sync because of the performance issues. **I will recommend installing the game in your device, please read "Installation on windows".**
 
+### "Why is the screen smaller in replit when I run it?"
+> The game screen is fixed, therefore you cannot shrink the size proportions. You can maximize the output screen **by clicking the 3 dots and click maximize**. alternatively, you can change the size proportions but I won't recommend it because it will ruin the fixed pixel position of other elements.
 ## Credits:
 - **Programmers and Debuggers**
 	- Manling He
@@ -93,5 +166,5 @@ Collect the rubbish as soon as it respawns because the rubbish respawns as soon 
 	- Old Guy Naration - Developed in Eleven Labs
 
 
-## Found a bug?
-Please create an issue.
+## Still have an issue?
+Please report the issue by creating an issue in the issue tab
