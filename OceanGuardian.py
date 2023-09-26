@@ -9,16 +9,16 @@ pygame.init()
 
 # sound
 
-collision_sound = pygame.mixer.Sound("comiendose-el-control-1-81452.mp3")
-button_click = pygame.mixer.Sound("shooting-sound-fx-159024.mp3")
-win_sound = pygame.mixer.Sound("success-fanfare-trumpets-6185.mp3")
-lose_sound = pygame.mixer.Sound("wah-wah-sad-trombone-6347.mp3")
+collision_sound = pygame.mixer.Sound("sounds/comiendose-el-control-1-81452.mp3")
+button_click = pygame.mixer.Sound("sounds/shooting-sound-fx-159024.mp3")
+win_sound = pygame.mixer.Sound("sounds/success-fanfare-trumpets-6185.mp3")
+lose_sound = pygame.mixer.Sound("sounds/wah-wah-sad-trombone-6347.mp3")
 
 # Ai speeches
-objective = pygame.mixer.Sound("The Objective.mp3")
-tomove = pygame.mixer.Sound("To move.mp3")
-doomed = pygame.mixer.Sound("We're doomed.mp3")
-horay = pygame.mixer.Sound("Horay.mp3")
+objective = pygame.mixer.Sound("sounds/The Objective.mp3")
+tomove = pygame.mixer.Sound("sounds/To move.mp3")
+doomed = pygame.mixer.Sound("sounds/We're doomed.mp3")
+horay = pygame.mixer.Sound("sounds/Horay.mp3")
 
 
 
