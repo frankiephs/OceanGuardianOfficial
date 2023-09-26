@@ -9,16 +9,16 @@ pygame.init()
 
 # sound
 
-collision_sound = pygame.mixer.Sound("comiendose-el-control-1-81452.mp3")
-button_click = pygame.mixer.Sound("shooting-sound-fx-159024.mp3")
-win_sound = pygame.mixer.Sound("success-fanfare-trumpets-6185.mp3")
-lose_sound = pygame.mixer.Sound("wah-wah-sad-trombone-6347.mp3")
+collision_sound = pygame.mixer.Sound("sounds/comiendose-el-control-1-81452.mp3")
+button_click = pygame.mixer.Sound("sounds/shooting-sound-fx-159024.mp3")
+win_sound = pygame.mixer.Sound("sounds/success-fanfare-trumpets-6185.mp3")
+lose_sound = pygame.mixer.Sound("sounds/wah-wah-sad-trombone-6347.mp3")
 
 # Ai speeches
-objective = pygame.mixer.Sound("The Objective.mp3")
-tomove = pygame.mixer.Sound("To move.mp3")
-doomed = pygame.mixer.Sound("We're doomed.mp3")
-horay = pygame.mixer.Sound("Horay.mp3")
+objective = pygame.mixer.Sound("sounds/The Objective.mp3")
+tomove = pygame.mixer.Sound("sounds/To move.mp3")
+doomed = pygame.mixer.Sound("sounds/We're doomed.mp3")
+horay = pygame.mixer.Sound("sounds/Horay.mp3")
 
 
 
@@ -77,7 +77,7 @@ class Player:
         self.y += self.velocity.y
         self.x = max(0, min(self.x, SCREEN_WIDTH - PLAYER_SIZE))
         self.y = max(TOP_SCREEN, min(self.y, SCREEN_HEIGHT - PLAYER_SIZE))
-        self.playerimg = pygame.image.load("fish.png")
+        self.playerimg = pygame.image.load("images/fish.png")
         self.playerimg2 = pygame.transform.scale(self.playerimg, (PLAYER_SIZE, PLAYER_SIZE))
         self.player = pygame.transform.flip(self.playerimg2, right, False)
     
@@ -222,7 +222,7 @@ class Game:
         if self.state == "game":
             if pygame.mixer.music.get_busy() == False:
                 # bg music
-                pygame.mixer.music.load("OceanGuardian_Game_now.mp3")
+                pygame.mixer.music.load("sounds/OceanGuardian_Game_now.mp3")
                 pygame.mixer.music.play()
             
             # Adjust the player's velocity based on key presses
@@ -288,7 +288,7 @@ class Game:
     def draw(self):
         
         
-        bg_img = pygame.image.load("bg.png")
+        bg_img = pygame.image.load("images/bg.png")
         bg = pygame.transform.scale(bg_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
         # The all screen fill
         screen.blit(bg, (0,0))
@@ -357,7 +357,7 @@ class Game:
             self.player.draw()
             for enemy in self.enemies:
                 
-                enemyimg = pygame.image.load("bottle.png")
+                enemyimg = pygame.image.load("images/bottle.png")
                 enemyimg = pygame.transform.scale(enemyimg,(ENEMY_SIZE,ENEMY_SIZE))
                 
                 screen.blit(enemyimg,enemy.rect )
@@ -420,7 +420,7 @@ class Game:
             screen.blit(lose_text, (SCREEN_WIDTH // 2 - 125, SCREEN_HEIGHT // 2 - 300))
             
             # setting up end image
-            img = pygame.image.load("lose1.png")
+            img = pygame.image.load("images/lose1.png")
             img = pygame.transform.scale(img, (img.get_width() // 2, img.get_height() // 2))
             screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) - 350, (WINDOW_SCREEN_HEIGHT // 2) - 200))
             
