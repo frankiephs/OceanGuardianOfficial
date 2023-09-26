@@ -25,7 +25,7 @@ horay = pygame.mixer.Sound("sounds/Horay.mp3")
 # Constants
 
 # Where the player moves around
-SCREEN_WIDTH = 1280
+SCREEN_WIDTH = 1280 
 SCREEN_HEIGHT = 830
 
 # starting from the very top
@@ -37,7 +37,7 @@ WINDOW_SCREEN_WIDTH = 1280
 WINDOW_SCREEN_HEIGHT = 830
 
 # Required score
-SCORE = 15
+SCORE = 1
 
 
 
@@ -290,50 +290,33 @@ class Game:
         
         bg_img = pygame.image.load("images/bg.png")
         bg = pygame.transform.scale(bg_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
-        # The all screen fill
         screen.blit(bg, (0,0))
         
         
         
         # home
         if self.state == "home":
-            self.play_button = pygame.Rect(SCREEN_WIDTH // 2 - 75, SCREEN_HEIGHT // 2 - 25, 150, 50)
-            pygame.draw.rect(screen, RED, self.play_button)
-            play_text = font.render("Play", True, WHITE)
-            screen.blit(play_text, (self.play_button.centerx - 30, self.play_button.centery - 15))
+            
+            
+            bg_start_img = pygame.image.load("images/startscreen.png")
+            bg_start = pygame.transform.scale(bg_start_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+            screen.blit(bg_start, (0,0))
+            
+            
+            
+            self.play_button = pygame.Rect(180, 300, 190, 100)
+            
+            
+            
             
             
             # draws the intro screen
         elif self.state == "intro" and self.new_user == True:
                 screen.fill(BLACK)
                 
-                
-                # Top
-                obj = font.render("The objective of the game is to collect rubbish in", True, WHITE)
-                obj2 = font.render("a specified time, You need to get 15 rubbish to win.", True, WHITE)
-                obj3 = font.render("if you lose, the game ends.", True, WHITE)
-                Instructions = font.render("Controls: Use the WASD.", True, WHITE)
-                
-                # Credits
-                credits = font.render("Credits:", True, WHITE)
-                credits1 = font.render("Frankie: Project manager and Main Programmer", True, WHITE)
-                credits2 = font.render("Chien: Debugger and programmer", True, WHITE)
-                credits3 = font.render("Manling: Main designer", True, WHITE)
-                
-                
-                # blit
-                # Objective
-                screen.blit(obj, ((WINDOW_SCREEN_WIDTH // 2) - 250, 200))
-                screen.blit(obj2, ((WINDOW_SCREEN_WIDTH // 2) - 250, 230))
-                screen.blit(obj3, ((WINDOW_SCREEN_WIDTH // 2) - 250, 260))
-                
-                screen.blit(Instructions, ((WINDOW_SCREEN_WIDTH // 2) - 100, 320))
-                
-                # credits
-                screen.blit(credits, (10, WINDOW_SCREEN_WIDTH - 620))
-                screen.blit(credits1, (10, WINDOW_SCREEN_WIDTH - 590))
-                screen.blit(credits2, (10, WINDOW_SCREEN_WIDTH - 560))
-                screen.blit(credits3, (10, WINDOW_SCREEN_WIDTH - 530))
+                bg_load_img = pygame.image.load("images/loadingscreen.png")
+                bg_load = pygame.transform.scale(bg_load_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+                screen.blit(bg_load, (0,0))
                 
                 pygame.display.flip()
                 time.sleep(1)
@@ -369,22 +352,29 @@ class Game:
             time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, RED)
             screen.blit(time_text, (10, 50))
         elif self.state == "win":
+            
+            bg_win_img = pygame.image.load("images/winscreen.png")
+            bg_win = pygame.transform.scale(bg_win_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+            screen.blit(bg_win, (0,0))
+            
+            
+            
+            
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
             
-            # bg
-            screen.fill(BLACK)
             
-            win_text = font.render("Congratulations! You won!", True, RED)
+            
+            
             if self.displayed_fact is None:
                 self.displayed_fact = random.choice(self.plastic_facts)
                 time.sleep(3.5)
                 
             
-            fact_text = font.render(self.displayed_fact, True, RED)
+            fact_text = font.render(self.displayed_fact, True, BLACK)
 
-            screen.blit(fact_text, (SCREEN_WIDTH // 2 - 450, SCREEN_HEIGHT // 2 + 20))
-            screen.blit(win_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 20))
+            screen.blit(fact_text, (SCREEN_WIDTH // 2 - 480, 20))
+            
             pygame.display.flip()
             
             
