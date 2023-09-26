@@ -10,21 +10,44 @@ The Objectives is to collect a specific number of rubbish *(Displayed in game)* 
 Use the **W A S D** Controls.
 ## Screenshots
 
-## Installation
+## Requirements:
+> **Python 3.2 or above**
 
-**step 1:** Clone this repository
+>  **Required Libraries list:** 
+>  *(Check out how to install the libraries in "Installation in windows step 2".)*
+>  - pygame
+>  - random
+>  - sys
+>  - Time
 
-**Step 2:** Locate your directory using **cmd** or **powershell** or *any Python IDE*
+## Installation in windows
 
-**Step 3:** Install the requirements.
 
-**Step 4:** Run the python file using **cmd** or **powershell** or any *Python IDE*
+### Step 1: Clone this repository
+Method 1: Using the git clone in the *cmd* or *powershell*
+Method 2: Using the github Desktop
+Method 3: Downloading the zip file
 
-## Tips:
+### Step 2:** Install the required libraries
+Method 1: Manual download
+Method 2: Using *cmd* or *powershell*
+
+### Step 3: Run the file
+Method 1: Using *cmd** or **powershell*
+Method 2: Manually executing it in your IDE
+
+## Installation in replit
+
+## Game Tips:
 Collect the rubbish as soon as it respawns because the rubbish respawns as soon as the previous rubbish disappears. 
 
 
 ## Frequently Asked Questions
+
+### "Why can't I install requirements.txt or libraries using pip in cmd? Any solutions?"
+> If using a school device, Installation or configuration of the device or hardware are prohibited. Use **Windows powershell** instead or use your **own personal computer**.
+> Still cannot run? Use **replit** as an alternative.
+
 ### "Why is it not an exe file?"
 
 > *.exe* files or *executables* are compiled files, Any changes will need to be compiled again to make it up to date. In this process, This reduces flexibility for the developers and for the users. 
@@ -50,7 +73,11 @@ Collect the rubbish as soon as it respawns because the rubbish respawns as soon 
 ### "Why can't I press the 'x' or exit button?"
 >In pygame, to exit the game, You will need to call the *'pygame.quit' and 'sys.exit'*, When in a delay method (refering to the previous question), the software stops or the file stops therefore it cannot call the quit method. "Then why on other areas are working?" Other areas use the tick difference to make a timer, this is quite complex and requires a longer code.  We are planning to remove the delay by proceeding with the "click to continue" system but that will consume another time.
 
-
+### "It says pygame.mixer.init() error?"
+> regarding to the `pygame.mixer.init()` error, This is because replit is a browser based IDE and the `pygame.mixer.init()` finds an audio device which is typically refering to the hardware. To solve this issue, you will need to use the "pygame" language instead of the "python" language. In this case, it now supports sounds from pygame.
+> 
+### "Why is the performance slower in replit?"
+> Replit have its own GPU, RAM and storage because it is virtual environment that uses docker containers. These GPU, RAM, etc. have its own limitations and might require to upgrade your own account if you want a faster one. Pygame also runs fast frames therefore it requires a hardware that is fast too.
 
 ## Credits:
 - **Programmers and Debuggers**
