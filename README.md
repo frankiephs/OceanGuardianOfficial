@@ -9,6 +9,9 @@ The Objectives is to collect a specific number of rubbish *(Displayed in game)* 
 ### Controls:
 Use the **W A S D** Controls.
 ## Screenshots
+
+![Alt text](Screenshots/StartScreen.PNG)
+![Alt text](Screenshots/LoadingScreen.PNG)
 ![Alt text](Screenshots/GameScreen.PNG)
 
 ## Requirements:
