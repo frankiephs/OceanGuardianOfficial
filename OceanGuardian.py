@@ -37,7 +37,7 @@ WINDOW_SCREEN_WIDTH = 1280
 WINDOW_SCREEN_HEIGHT = 830
 
 # Required score
-SCORE = 15
+SCORE = 1
 
 
 
@@ -186,6 +186,7 @@ class Game:
                 if self.state == "home" and self.play_button.collidepoint(pygame.mouse.get_pos()):
                     button_click.play()
                     self.state = "intro"
+                    
                 
                 else:
                     # change the state to game as default
@@ -375,6 +376,9 @@ class Game:
             
             time.sleep(5)
             self.state = "game"
+            
+            # starts the timer
+            self.start_time = pygame.time.get_ticks()
         
             
 
@@ -442,9 +446,13 @@ class Game:
                 time.sleep(3.5)
                 
             
+            
+            
+            # fact text
+            font = pygame.font.Font(None, 30) 
             fact_text = font.render(self.displayed_fact, True, BLACK)
 
-            screen.blit(fact_text, (SCREEN_WIDTH // 2 - 480, 20))
+            screen.blit(fact_text, (SCREEN_WIDTH // 2 - 300, 20))
             
             pygame.display.flip()
             
@@ -462,6 +470,10 @@ class Game:
             if pygame.time.get_ticks() - self.message_timer >= MESSAGE_DELAY:
                 self.displayed_fact = None
                 self.reset_game()
+                
+                
+                
+                
                 self.sound_played = False
         
         
@@ -507,14 +519,18 @@ class Game:
         
         
         else:
+            # if newuser is False
             self.state = "game"
+            
+            # resets start time
+            self.start_time = pygame.time.get_ticks()
 
         pygame.display.flip()
 
     def reset_game(self):
         self.state = "home"
         self.score = 0
-        self.start_time = pygame.time.get_ticks()
+        
 
 # Initialize the game
 game = Game()
@@ -536,6 +552,7 @@ def cmd(state):
 # Game loop
 while True:
     cmd("")
+    
     game.handle_events()
     game.update()
     game.draw()
