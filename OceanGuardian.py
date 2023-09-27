@@ -47,7 +47,7 @@ PLAYER_SIZE = 60
 ENEMY_SIZE = 40
 ENEMY_SPEED = 30
 PLAYER_ACCELERATION = 30
-TIME_LIMIT = 60  # Time limit in seconds
+TIME_LIMIT = 70  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds) * 2
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -136,7 +136,8 @@ class Game:
         self.new_user = True
         
         
-        
+        # music variable
+        self.currentmusic = None
         
         
 # Add variables to track movement keys
@@ -233,12 +234,16 @@ class Game:
     def update(self):
         if self.state == "game":
             
-            
+            # turns off the music if it is not a new user anymore
+            if pygame.mixer.music.get_busy() == True and self.new_user == False and self.currentmusic == "first":
+                pygame.mixer.music.fadeout(500)
+                pygame.mixer.music.unload()
             
             if pygame.mixer.music.get_busy() == False:
                 # bg music
                 pygame.mixer.music.load("sounds/OceanGuardian_Game_now.mp3")
                 pygame.mixer.music.play()
+                self.currentmusic = "second"
             
             # Adjust the player's velocity based on key presses
             player_velocity = pygame.Vector2(0, 0)
@@ -290,7 +295,7 @@ class Game:
                     
                     
                     # new enemy
-                enemy_image_list = ["can.png","bottle.png"]
+                enemy_image_list = ["can.png","bottle.png","bag.png"]
                 randomimage = random.choice(enemy_image_list)
                 self.new_enemy = Enemy(enemy_x, enemy_y, side,pygame.image.load(f"images/{randomimage}") )
                 self.enemies.clear()
@@ -328,6 +333,7 @@ class Game:
                 
                 pygame.mixer.music.load("sounds/OceanGuardian_TheOcean.mp3")
                 pygame.mixer.music.play()
+                self.currentmusic = "first"
             
             bg_start_img = pygame.image.load("images/startscreen.png")
             bg_start = pygame.transform.scale(bg_start_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
@@ -426,6 +432,7 @@ class Game:
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
                 pygame.mixer.music.unload()
+                self.currentmusic = None
             
             
             
@@ -466,6 +473,7 @@ class Game:
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
                 pygame.mixer.music.unload()
+                self.currentmusic = None
                 
             # Black screen
             bg_lose_img = pygame.image.load("images/losescreen.png")
