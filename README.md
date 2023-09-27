@@ -118,6 +118,9 @@ Any issues? Please refer to 'Frequently asked Question'.
 > If using a school device, Installation or configuration of the device or hardware are prohibited. Use **Windows powershell** instead or use your **own personal computer**.
 > Still cannot run? Use **replit** as an alternative.
 
+### "It says I do not have pip command?"
+> You need to install it independently if you did not install it using the standard Python Installation, Check online for installment. If cmd is prohibited, use **Windows Powershell** or use your own personal computer
+
 ### "Why is it not an exe file?"
 
 > *.exe* files or *executables* are compiled files, Any changes will need to be compiled again to make it up to date. In this process, This reduces flexibility for the developers and for the users. 
@@ -156,6 +159,9 @@ Any issues? Please refer to 'Frequently asked Question'.
 
 ### "It says it needs time module, random module(I am working in an android Python IDE) ?"
 > Please refer to the requirements section and install it using pip install command in the terminal of your IDE.
+>
+### "I cannot install git or use git clone because the school network or admin blocked it."
+> Please refer to "cannot install using pip in cmd" question, or refer to "Installation in windows": method 2.
 >
 ### "How do I run the game using a browser base Python compiler like programiz that do not have shell/terminal for installing modules?"
 > Please change IDE's like replit(I do not personally suggest if you are in a free version), vs code, IDLE, or standard Python IDE's...
