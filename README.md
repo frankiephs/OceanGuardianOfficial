@@ -165,9 +165,20 @@ Any issues? Please refer to 'Frequently asked Question'.
 	- Main Game background - designed by Manling He
 	- Rubbish Sprites - designed by Manling He
 	- Robot Fish Sprites - designed by Manling He
+	- WinNews picture - designed by Frankie Bula, Picture from Pixabay.com
+	- Breaking News Picture designed by Frankie Bula, Generated from breakyourownnews.com
+	- Loading screen - designed by Frankie Bula
+	- lose screen - designed by Frankie Bula
+	- Start Screen/ Home screen - designed by Frankie Bula
+	- WinScreen - Designed by Frankie Bula
 - **Sound Credits**
 	- OceanGuardian "Game On" - Composed by Frankie Bula
-	- Old Guy Naration - Developed in Eleven Labs
+  	- OceanGuardian "TheOcean" - Composed by Frankie Bula
+  	- success fanfare trumpets 6185- Pixabay
+  	- comiendose-el-control-1-81452 / RoboFish Eating sound - Pixabay
+  	- Shooting Sound FX - Pixabay
+  	- wah-wah sound - Pixabay
+	- Old Guy Naration: Objective, To move, We're doomed, Horay - Developed in Eleven Labs
 
 
 ## Still have an issue?
