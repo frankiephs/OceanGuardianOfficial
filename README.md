@@ -9,6 +9,7 @@ The Objectives is to collect a specific number of rubbish *(Displayed in game)* 
 ### Controls:
 Use the **W A S D** Controls.
 ## Screenshots
+![Alt text](Screenshots/GameScreen.PNG)
 
 ## Requirements:
 > **Python 3.2 or above**
