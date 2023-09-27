@@ -37,7 +37,7 @@ WINDOW_SCREEN_WIDTH = 1280
 WINDOW_SCREEN_HEIGHT = 830
 
 # Required score
-SCORE = 1
+SCORE = 15
 
 
 
@@ -45,7 +45,7 @@ SCORE = 1
 PLAYER_SIZE = 60
 
 ENEMY_SIZE = 40
-ENEMY_SPEED = 20
+ENEMY_SPEED = 30
 PLAYER_ACCELERATION = 30
 TIME_LIMIT = 60  # Time limit in seconds
 MESSAGE_DELAY = 7800  # Delay in milliseconds (2 seconds) * 2
@@ -93,11 +93,18 @@ class Enemy:
     
     
     # enemy attributes
-    def __init__(self, x, y, direction):
+    def __init__(self, x, y, direction, enemyimage):
         self.rect = pygame.Rect(x, y, ENEMY_SIZE, ENEMY_SIZE)
-
         self.direction = direction
-    
+        
+        
+        self.enemyimage = enemyimage
+        self.enemyimg = pygame.transform.scale(self.enemyimage,(ENEMY_SIZE,ENEMY_SIZE))
+        
+        
+        
+        
+        
     
     # decision where the enemy goes or the rubbish
     def move(self):
@@ -116,6 +123,7 @@ class Game:
         self.right = False
         self.player = Player(SCREEN_WIDTH // 2 - PLAYER_SIZE // 2, SCREEN_HEIGHT // 2 - PLAYER_SIZE // 2)
         self.enemies = []
+        
         self.enemy_spawn_timer = 0
         self.score = 0
         self.start_time = pygame.time.get_ticks()  # Start time in milliseconds
@@ -126,6 +134,10 @@ class Game:
         self.message_timer = 0  # Timer for win/lose message display
         
         self.new_user = True
+        
+        
+        
+        
         
 # Add variables to track movement keys
         self.is_w_pressed = False
@@ -192,14 +204,14 @@ class Game:
                 elif event.key == pygame.K_a:
                     self.is_a_pressed = True
                     self.right = False
-                    print(self.right)
+                    
                     
                 elif event.key == pygame.K_s:
                     self.is_s_pressed = True
                 elif event.key == pygame.K_d:
                     self.is_d_pressed = True
                     self.right = True
-                    print(self.right)
+                    
                     
                     
             
@@ -220,6 +232,9 @@ class Game:
                     
     def update(self):
         if self.state == "game":
+            
+            
+            
             if pygame.mixer.music.get_busy() == False:
                 # bg music
                 pygame.mixer.music.load("sounds/OceanGuardian_Game_now.mp3")
@@ -271,8 +286,18 @@ class Game:
                 else:
                     enemy_x = SCREEN_WIDTH
                     enemy_y = random.randint(TOP_SCREEN, SCREEN_HEIGHT - ENEMY_SIZE)
-                new_enemy = Enemy(enemy_x, enemy_y, side)
-                self.enemies.append(new_enemy)
+                    
+                    
+                    
+                    # new enemy
+                enemy_image_list = ["can.png","bottle.png"]
+                randomimage = random.choice(enemy_image_list)
+                self.new_enemy = Enemy(enemy_x, enemy_y, side,pygame.image.load(f"images/{randomimage}") )
+                self.enemies.clear()
+                self.enemies.append(self.new_enemy)
+                
+                
+                
                 self.enemy_spawn_timer = 0
 
             for enemy in self.enemies:
@@ -283,6 +308,7 @@ class Game:
                     self.enemies.remove(enemy)
                     collision_sound.play()
                     self.score += 1
+                    
                     self.player.velocity = pygame.Vector2(0, 0)
 
     def draw(self):
@@ -297,10 +323,16 @@ class Game:
         # home
         if self.state == "home":
             
+            # bg music
+            if pygame.mixer.music.get_busy() == False:
+                
+                pygame.mixer.music.load("sounds/OceanGuardian_TheOcean.mp3")
+                pygame.mixer.music.play()
             
             bg_start_img = pygame.image.load("images/startscreen.png")
             bg_start = pygame.transform.scale(bg_start_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
             screen.blit(bg_start, (0,0))
+            
             
             
             
@@ -312,24 +344,31 @@ class Game:
             
             # draws the intro screen
         elif self.state == "intro" and self.new_user == True:
-                screen.fill(BLACK)
-                
-                bg_load_img = pygame.image.load("images/loadingscreen.png")
-                bg_load = pygame.transform.scale(bg_load_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
-                screen.blit(bg_load, (0,0))
-                
-                pygame.display.flip()
-                time.sleep(1)
-                
-                objective.play()
-                
-                time.sleep(10)
-                
-                
-                tomove.play()
-                
-                time.sleep(5)
-                self.state = "game"
+            
+            # music off
+
+            if pygame.mixer.music.get_busy() == True:
+                pygame.mixer.music.fadeout(500)
+                pygame.mixer.music.unload()
+            
+            screen.fill(BLACK)
+            
+            bg_load_img = pygame.image.load("images/loadingscreen.png")
+            bg_load = pygame.transform.scale(bg_load_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+            screen.blit(bg_load, (0,0))
+            
+            pygame.display.flip()
+            time.sleep(1)
+            
+            objective.play()
+            
+            time.sleep(10)
+            
+            
+            tomove.play()
+            
+            time.sleep(5)
+            self.state = "game"
         
             
 
@@ -337,31 +376,56 @@ class Game:
             
             
         elif self.state == "game":
+            
             self.player.draw()
+            
+            
+            
+            
+            
             for enemy in self.enemies:
                 
-                enemyimg = pygame.image.load("images/bottle.png")
-                enemyimg = pygame.transform.scale(enemyimg,(ENEMY_SIZE,ENEMY_SIZE))
                 
-                screen.blit(enemyimg,enemy.rect )
+                
+                
+                screen.blit(self.new_enemy.enemyimg,enemy.rect )
+                pygame.display.flip()
                 
 
-
-            score_text = font.render("Score: {}".format(self.score), True, RED)
-            screen.blit(score_text, (10, 10))
-            time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, RED)
-            screen.blit(time_text, (10, 50))
-        elif self.state == "win":
+            # score and time text
             
+            # score
+            font = pygame.font.Font(None, 30)  
+            score_text = font.render("Score: {}".format(self.score), True, BLACK)
+            screen.blit(score_text, ((WINDOW_SCREEN_WIDTH // 2) + 130, 30))
+            
+            
+            
+            # time
+            time_text = font.render("Time: {:.1f}".format(max(0, TIME_LIMIT - (pygame.time.get_ticks() - self.start_time) / 1000)), True, BLACK)
+            
+            screen.blit(time_text, ((WINDOW_SCREEN_WIDTH // 2) + 130, 50))
+        
+        
+        
+        
+        
+        
+        elif self.state == "win":
+            # bg
             bg_win_img = pygame.image.load("images/winscreen.png")
             bg_win = pygame.transform.scale(bg_win_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
             screen.blit(bg_win, (0,0))
             
-            
+            img = pygame.image.load("images/WinNews.png")
+            img = pygame.transform.scale(img, ((img.get_width() // 2) - 50 , (img.get_height() // 2)-50))
+            screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) , (WINDOW_SCREEN_HEIGHT // 2) - 200))
+            pygame.display.flip()
             
             
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
+                pygame.mixer.music.unload()
             
             
             
@@ -401,19 +465,19 @@ class Game:
         elif self.state == "lose":
             if pygame.mixer.music.get_busy() == True:
                 pygame.mixer.music.fadeout(500)
+                pygame.mixer.music.unload()
+                
             # Black screen
-            screen.fill(BLACK)
+            bg_lose_img = pygame.image.load("images/losescreen.png")
+            bg_lose = pygame.transform.scale(bg_lose_img, (WINDOW_SCREEN_WIDTH, WINDOW_SCREEN_HEIGHT))
+            screen.blit(bg_lose, (0,0))
             
             
-            # lose text
-            lose_text = font.render("Game over! Try again.", True, RED)
-            screen.blit(lose_text, (SCREEN_WIDTH // 2 - 125, SCREEN_HEIGHT // 2 - 300))
             
             # setting up end image
-            img = pygame.image.load("images/lose1.png")
-            img = pygame.transform.scale(img, (img.get_width() // 2, img.get_height() // 2))
-            screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) - 350, (WINDOW_SCREEN_HEIGHT // 2) - 200))
-            
+            img = pygame.image.load("images/breaking-news.jpg")
+            img = pygame.transform.scale(img, ((img.get_width() // 2) -100, (img.get_height() // 2)-100))
+            screen.blit(img, ((WINDOW_SCREEN_WIDTH // 2) - 500, (WINDOW_SCREEN_HEIGHT // 2) - 100))
             pygame.display.flip()
             
             
@@ -431,9 +495,7 @@ class Game:
                 self.reset_game()
                 self.sound_played = False
         
-        
-        
-        
+
         
         
         else:
@@ -449,8 +511,23 @@ class Game:
 # Initialize the game
 game = Game()
 
+
+def cmd(state):
+    if state == "home":
+        game.state = "home"
+    if state == "intro":
+        game.state = "intro"
+    if state == "game":
+        game.state = "game"
+    if state == "win":
+        game.state = "win"
+    if state == "lose":
+        game.state = "lose"
+
+
 # Game loop
 while True:
+    cmd("")
     game.handle_events()
     game.update()
     game.draw()
