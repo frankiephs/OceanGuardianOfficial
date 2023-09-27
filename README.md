@@ -1,5 +1,3 @@
-
-
 # OceanGuardian Game
 ## About
 
@@ -16,11 +14,47 @@ Use the **W A S D** Controls.
 ![Alt text](Screenshots/LoadingScreen.PNG)
 ![Alt text](Screenshots/GameScreen.PNG)
 
-## Requirements:
+# Game Installation
+
+## Download Ocean Guardian exe on Windows
+### Step 1: Clone this repository
+**Method 1:** Using the git clone in the *cmd* or *powershell*
+step 1: Navigate to the directory you want to put the repository using
+
+    cd <directory>
+   for example,
+   
+
+    cd desktop/myfolder
+
+   
+
+step 2: Clone using git clone command
+
+    git clone https://github.com/frankiephs/OceanGuardianOfficial.git
+   *if you do not have git, refer to method 2*
+
+**Method 2:** Using the github Desktop
+step 1: watch [this 3 minutes youtube tutorial about cloning a git repository using github desktop.](https://www.youtube.com/watch?v=PoZNIbs_wx8)
+
+**Method 3:** Downloading the zip file
+step 1: Click the 'Code' button
+step 2: Click "Download ZIP"
+step3: Unzip it
+### Step 2: Click the exe file
+you are done!
+if any issues or bugs occur, please report
+No additional requirements required. If you wish to run it live. Read Installation for windows(updatable ver).
+
+If Issues persist , We recommend downloading the OceanGuardian.py (updatable) ver for stability and latest features.
+
+
+
+## Requirements: (If you wish to run/edit it through the source code live)
 > **Python 3.2 or above**
 
 >  **Required Library/ies list:** 
->  *(Check out how to install the libraries in "Installation in windows step 2".)*
+>  *(Check out how to install the libraries in "Installation in windows(Updatable ver) step 2".)*
 >  - pygame
 
 you only need pygame and every standard python installation have these libraries down below but if you are working in a different environment such as android python IDE's that still need random, sys and time modules installation, then download these. 
@@ -28,7 +62,7 @@ you only need pygame and every standard python installation have these libraries
 >  - sys
 >  - Time
 
-## Installation in windows
+## Installation in windows(updatable ver): (If you wish to run/edit it through the source code live)
 
 
 ### Step 1: Clone this repository
@@ -54,10 +88,12 @@ step 1: watch [this 3 minutes youtube tutorial about cloning a git repository us
 **Method 3:** Downloading the zip file
 step 1: Click the 'Code' button
 step 2: Click "Download ZIP"
+step 3: Unzip it
 
 
 ### Step 2: Install the required libraries
 Manual download using *cmd* or *powershell*
+
 step 1: Install using pip the package/library individually
 
     pip install <package name/library>
@@ -73,7 +109,7 @@ step 1: Install using pip the package/library individually
   
 
 ### Step 3: Run the file
-**Method 1**: Using *cmd** or **powershell*
+**Method 1**: Using *cmd* or *powershell*
 step 1: use these commands
 
     python OceanGuardian.py
@@ -124,7 +160,9 @@ Any issues? Please refer to 'Frequently asked Question'.
 
 ### "Why is it not an exe file?"
 
-> *.exe* files or *executables* are compiled files, Any changes will need to be compiled again to make it up to date. In this process, This reduces flexibility for the developers and for the users. 
+> *.exe* files or *executables* are compiled files, Any changes will need to be compiled again to make it up to date. In this process, This reduces flexibility for the developers and for the users. However, in future updates: we will add exe files for easy download. Stay tuned with the updates.
+
+>New update: There is now an exe file. Check Game Installation
 >
 ### **"why not just create a configuration file?"**
 > Configuration files are limited to variables and cannot change things such as functions, etc.
@@ -151,9 +189,9 @@ Any issues? Please refer to 'Frequently asked Question'.
 > regarding to the `pygame.mixer.init()` error, This is because replit is a browser based IDE and the `pygame.mixer.init()` finds an audio device which is typically refering to the hardware. To solve this issue, you will need to **use the "pygame" language** instead of the "python" language. In this case, it now supports sounds from pygame.
 > 
 ### "Why is the performance slower in replit?"
-> Replit have its own GPU, RAM and storage because it is virtual environment that uses docker containers. These GPU, RAM, etc. have its own limitations and might require to upgrade your own account if you want a faster one. Pygame also runs fast frames therefore it requires a hardware that is fast too. **I will recommend installing the game in your device, please read "Installation on windows".**
+> Replit have its own GPU, RAM and storage because it is virtual environment that uses docker containers. These GPU, RAM, etc. have its own limitations and might require to upgrade your own account if you want a faster one. Pygame also runs fast frames therefore it requires a hardware that is fast too. **I will recommend installing the game in your device, please read "Installation on windows(updatable ver)".**
 ### "Why are the sprite's appearance delayed in replit?"
-> Please refer to 'Why is the performance slower in replit'  question. The display method and the timer are not on sync because of the performance issues. **I will recommend installing the game in your device, please read "Installation on windows".**
+> Please refer to 'Why is the performance slower in replit'  question. The display method and the timer are not on sync because of the performance issues. **I will recommend installing the game in your device, please read "Installation on windows(Updatable ver)".**
 
 ### "Why is the screen smaller in replit when I run it?"
 > The game screen is fixed, therefore you cannot shrink the size proportions. You can maximize the output screen **by clicking the 3 dots and click maximize**. alternatively, you can change the size proportions but I won't recommend it because it will ruin the fixed pixel position of other elements.
@@ -162,7 +200,7 @@ Any issues? Please refer to 'Frequently asked Question'.
 > Please refer to the requirements section and install it using pip install command in the terminal of your IDE.
 >
 ### "I cannot install git or use git clone because the school network or admin blocked it."
-> Please refer to "cannot install using pip in cmd" question, or refer to "Installation in windows": method 2.
+> Please refer to "cannot install using pip in cmd" question, or refer to "Installation in windows(updatable ver)": method 2.
 >
 ### "How do I run the game using a browser base Python compiler like programiz that do not have shell/terminal for installing modules?"
 > Please change IDE's like replit(I do not personally suggest if you are in a free version), vs code, IDLE, or standard Python IDE's...
