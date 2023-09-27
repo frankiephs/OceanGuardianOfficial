@@ -1,4 +1,5 @@
 
+
 # OceanGuardian Game
 ## About
 
@@ -189,6 +190,18 @@ Any issues? Please refer to 'Frequently asked Question'.
   	- Shooting Sound FX - Pixabay
   	- wah-wah sound - Pixabay
 	- Old Guy Naration: Objective, To move, We're doomed, Horay - Developed in Eleven Labs
+
+## For developers
+In the `game loop` at the bottom of the code, There is a function named `cmd` and it is called inside the game loop. the cmd is a function for easier debugging. The cmd function is used if you want to play specific screens of the game. **Arguements are optional.** To run home screen or change game state, call using `cmd("home")`.
+
+| Screens |Arguements|
+|--|--|
+| Home/Start |  `cmd("home")`  |
+|Loading|`cmd("intro")`|
+| Game/Main | `cmd("game")` |
+| Win | `cmd("win")` |
+| Lose | `cmd("lose")` |
+
 
 
 ## Still have an issue?
