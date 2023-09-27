@@ -1,3 +1,4 @@
+
 # OceanGuardian Game
 ## About
 
@@ -17,9 +18,11 @@ Use the **W A S D** Controls.
 ## Requirements:
 > **Python 3.2 or above**
 
->  **Required Libraries list:** 
+>  **Required Library/ies list:** 
 >  *(Check out how to install the libraries in "Installation in windows step 2".)*
 >  - pygame
+
+you only need pygame and every standard python installation have these libraries down below but if you are working in a different environment such as android python IDE's that still need random, sys and time modules installation, then download these. 
 >  - random
 >  - sys
 >  - Time
@@ -53,7 +56,7 @@ step 2: Click "Download ZIP"
 
 
 ### Step 2: Install the required libraries
-**Method 1:** Manual download using *cmd* or *powershell*
+Manual download using *cmd* or *powershell*
 step 1: Install using pip the package/library individually
 
     pip install <package name/library>
@@ -62,17 +65,11 @@ step 1: Install using pip the package/library individually
    
 
     pip install pygame
-   continue...
+   
+   if *time*, etc. modules are also required, install them using this method too
    
 
-**Method 2:** Download all requirements using *cmd* or *powershell*
-step 1: navigate to your directory using
-
-    cd <directory>
-   step 2: install requirements.txt
-   
-
-    pip install -r requirements.txt
+  
 
 ### Step 3: Run the file
 **Method 1**: Using *cmd** or **powershell*
@@ -117,7 +114,7 @@ Any issues? Please refer to 'Frequently asked Question'.
 
 ## Frequently Asked Questions
 
-### "Why can't I install requirements.txt or libraries using pip in cmd? Any solutions?"
+### "Why can't I install ~~requirements.txt~~ or libraries using pip in cmd? Any solutions?"
 > If using a school device, Installation or configuration of the device or hardware are prohibited. Use **Windows powershell** instead or use your **own personal computer**.
 > Still cannot run? Use **replit** as an alternative.
 
@@ -156,6 +153,13 @@ Any issues? Please refer to 'Frequently asked Question'.
 
 ### "Why is the screen smaller in replit when I run it?"
 > The game screen is fixed, therefore you cannot shrink the size proportions. You can maximize the output screen **by clicking the 3 dots and click maximize**. alternatively, you can change the size proportions but I won't recommend it because it will ruin the fixed pixel position of other elements.
+
+### "It says it needs time module, random module(I am working in an android Python IDE) ?"
+> Please refer to the requirements section and install it using pip install command in the terminal of your IDE.
+>
+### "How do I run the game using a browser base Python compiler like programiz that do not have shell/terminal for installing modules?"
+> Please change IDE's like replit(I do not personally suggest if you are in a free version), vs code, IDLE, or standard Python IDE's...
+
 ## Credits:
 - **Programmers and Debuggers**
 	- Manling He
