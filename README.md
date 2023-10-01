@@ -128,9 +128,13 @@ if you are using in vscode, click the **run** button or the **triangle** button 
 
 
 ## Installation in replit
+
 **Step 1:** Click **create**
+
 **Step 2:** Click **Import from github**
+
 Step 3: Copy and paste the **github URL**
+
 
     https://github.com/frankiephs/OceanGuardianOfficial.git
 Step 4: Select the *language* to **pygame**
