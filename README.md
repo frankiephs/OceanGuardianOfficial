@@ -219,7 +219,7 @@ Any issues? Please refer to 'Frequently asked Question'.
 	- Rubbish Sprites - designed by Manling He
 	- Robot Fish Sprites - designed by Manling He
 	- WinNews picture - designed by Frankie Bula, Picture from Pixabay.com
-	- Breaking News Picture designed by Frankie Bula, Generated from breakyourownnews.com
+	- Breaking News Picture designed by Frankie Bula, Generated from breakyourownnews.com and picture from pixabay
 	- Loading screen - designed by Frankie Bula
 	- lose screen - designed by Frankie Bula
 	- Start Screen/ Home screen - designed by Frankie Bula
@@ -231,7 +231,7 @@ Any issues? Please refer to 'Frequently asked Question'.
   	- comiendose-el-control-1-81452 / RoboFish Eating sound - Pixabay
   	- Shooting Sound FX - Pixabay
   	- wah-wah sound - Pixabay
-	- Old Guy Naration: Objective, To move, We're doomed, Horay - Developed in Eleven Labs
+	- Old Guy Naration: Objective, To move, We're doomed, Horay - Developed in Eleven Labs, modified by Frankie Bula
 
 ## For developers
 In the `game loop` at the bottom of the code, There is a function named `cmd` and it is called inside the game loop. the cmd is a function for easier debugging. The cmd function is used if you want to play specific screens of the game. **Arguements are optional.** To run home screen or change game state, call using `cmd("home")`.
