@@ -9,16 +9,16 @@ pygame.init()
 
 # sound
 
-collision_sound = pygame.mixer.Sound("sounds/comiendose-el-control-1-81452.mp3")
-button_click = pygame.mixer.Sound("sounds/shooting-sound-fx-159024.mp3")
-win_sound = pygame.mixer.Sound("sounds/success-fanfare-trumpets-6185.mp3")
-lose_sound = pygame.mixer.Sound("sounds/wah-wah-sad-trombone-6347.mp3")
+collision_sound = pygame.mixer.Sound("sounds/comiendose-el-control-1-81452.ogg")
+button_click = pygame.mixer.Sound("sounds/shooting-sound-fx-159024.ogg")
+win_sound = pygame.mixer.Sound("sounds/success-fanfare-trumpets-6185.ogg")
+lose_sound = pygame.mixer.Sound("sounds/wah-wah-sad-trombone-6347.ogg")
 
 # Ai speeches
-objective = pygame.mixer.Sound("sounds/The Objective.mp3")
-tomove = pygame.mixer.Sound("sounds/To move.mp3")
-doomed = pygame.mixer.Sound("sounds/We're doomed.mp3")
-horay = pygame.mixer.Sound("sounds/Horay.mp3")
+objective = pygame.mixer.Sound("sounds/The-Objective.ogg")
+tomove = pygame.mixer.Sound("sounds/To-move.ogg")
+doomed = pygame.mixer.Sound("sounds/We_re-doomed.ogg")
+horay = pygame.mixer.Sound("sounds/Horay.ogg")
 
 
 
@@ -242,7 +242,7 @@ class Game:
             
             if pygame.mixer.music.get_busy() == False:
                 # bg music
-                pygame.mixer.music.load("sounds/OceanGuardian_Game_now.mp3")
+                pygame.mixer.music.load("sounds/OceanGuardian_Game_now.ogg")
                 pygame.mixer.music.play()
                 self.currentmusic = "second"
             
@@ -332,7 +332,7 @@ class Game:
             # bg music
             if pygame.mixer.music.get_busy() == False:
                 
-                pygame.mixer.music.load("sounds/OceanGuardian_TheOcean.mp3")
+                pygame.mixer.music.load("sounds/OceanGuardian_TheOcean.ogg")
                 pygame.mixer.music.play()
                 self.currentmusic = "first"
             
