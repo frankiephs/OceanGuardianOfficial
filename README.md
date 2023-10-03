@@ -1,3 +1,4 @@
+
 # OceanGuardian Game
 ## About
 
@@ -208,6 +209,9 @@ Any issues? Please refer to 'Frequently asked Question'.
 >
 ### "How do I run the game using a browser base Python compiler like programiz that do not have shell/terminal for installing modules?"
 > Please change IDE's like replit(I do not personally suggest if you are in a free version), vs code, IDLE, or standard Python IDE's...
+
+### "How can I exit in the win/lose screen?"
+> The game redirects to the main page after the win/lose screen. Please refer to the "Why can't I press the 'x' or exit button?" question and "Why is it 'not responding' in some areas even it is actually responding?" question for more clarification
 
 ## Credits:
 - **Programmers and Debuggers**
